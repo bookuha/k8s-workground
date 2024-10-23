@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: bookuha/class_schedule_backend:latest
+          ports:
+            - containerPort: 8080
+            - containerPort: 443
+          envFrom:
+            - configMapRef:
+                name: backend-env
+          volumeMounts:
+            - name: backup-volume
+              mountPath: /backup
+      volumes:
+        - name: backup-volume
+          hostPath:
+            path: /backup/backup
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: default
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+    - port: 443
+      targetPort: 443
+  type: ClusterIP

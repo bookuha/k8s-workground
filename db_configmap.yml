@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+  name: postgres-env
+  namespace: default
+data:
+  POSTGRES_USER: "postgres"
+  POSTGRES_DB: "classschedule"
