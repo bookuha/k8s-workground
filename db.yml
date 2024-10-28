@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:latest
+          image: postgres:14
           ports:
             - containerPort: 5432
           envFrom:
@@ -27,7 +27,7 @@ spec:
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
-            claimName: postgres-pvc
+            claimName: postgres-volume-claim
 
 ---
 apiVersion: v1
@@ -47,11 +47,30 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pvc
-  namespace: default
+  name: postgres-volume-claim
+  labels:
+    app: postgres
 spec:
+  storageClassName: manual
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-volume
+  labels:
+    type: local
+    app: postgres
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /data/postgresql
