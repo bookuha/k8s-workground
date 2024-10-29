@@ -15,10 +15,9 @@ spec:
     spec:
       containers:
         - name: backend
-          image: bookuha/class_schedule_backend:latest
+          image: bookuha/class_schedule_backend:neo
           ports:
             - containerPort: 8080
-            - containerPort: 443
           envFrom:
             - configMapRef:
                 name: backend-env
@@ -42,6 +41,4 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-    - port: 443
-      targetPort: 443
   type: ClusterIP

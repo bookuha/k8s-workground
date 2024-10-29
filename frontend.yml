@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: bookuha/class_schedule_frontend:latest
+          image: bookuha/class_schedule_frontend:neo
           ports:
             - containerPort: 3000
           envFrom:

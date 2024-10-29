@@ -6,3 +6,4 @@ metadata:
 data:
   POSTGRES_USER: "postgres"
   POSTGRES_DB: "classschedule"
+  POSTGRES_PASSWORD: "passpass"  
