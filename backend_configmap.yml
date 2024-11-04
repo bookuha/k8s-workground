@@ -4,12 +4,12 @@ metadata:
   name: backend-env
   namespace: default
 data:
-  DB_HOST: "db-service"
+  DB_HOST: "postgres-service"
   DB_PORT: "5432"
   DB_USER: "postgres"
-  DB_PASSWORD: "pass"
+  DB_PASSWORD: "passpass"
   DB_NAME: "classschedule"
-  REDIS_HOST: "redis"
+  REDIS_HOST: "redis-service"
   REDIS_PORT: "6379"
   MONGO_CURRENT_DB: "schedules"
   MONGO_DEFAULT_SERVER_CLUSTER: "mongo-service"

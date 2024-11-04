@@ -21,13 +21,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: backend-env
-          volumeMounts:
-            - name: backup-volume
-              mountPath: /backup
-      volumes:
-        - name: backup-volume
-          hostPath:
-            path: /backup/backup
 
 ---
 apiVersion: v1
@@ -41,4 +34,4 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-  type: ClusterIP
+  type: LoadBalancer

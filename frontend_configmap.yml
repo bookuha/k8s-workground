@@ -4,4 +4,4 @@ metadata:
   name: frontend-env
   namespace: default
 data:
-  REACT_APP_API_BASE_URL: "http://backend-service.default.svc.cluster.local:8080/"
+  REACT_APP_API_BASE_URL: "http://34.107.87.187:8080/"
